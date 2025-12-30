@@ -15,7 +15,7 @@ A Retrieval-Augmented Generation (RAG) system designed to intelligently search a
 
 ## 📋 Prerequisites
 
-- Python 3.7+
+- Python 3.9+
 - Google Colab (recommended) or local Python environment
 - PDF/PPTX files containing your academic notes
 
@@ -24,7 +24,10 @@ A Retrieval-Augmented Generation (RAG) system designed to intelligently search a
 Install all required dependencies using pip:
 
 ```bash
-pip install numpy pillow pymupdf pytesseract opencv-python open-clip-torch sentence-transformers chromadb google-generativeai langchain langchain-community langchain-google-genai
+pip install numpy pillow pymupdf pytesseract opencv-python \
+    open-clip-torch sentence-transformers chromadb \
+    google-generativeai langchain langchain-community \
+    langchain-google-genai
 ```
 
 ### Dependencies
@@ -50,6 +53,8 @@ Click the "Open in Colab" badge above to run the notebook directly in Google Col
 
 ### 2. Local Usage
 
+The complete implementation is available in the [RAG_PDF.ipynb](RAG_PDF.ipynb) notebook. Here's a simplified workflow:
+
 ```python
 import torch
 import open_clip
@@ -63,12 +68,12 @@ model, _, preprocess = open_clip.create_model_and_transforms(
 tokenizer = open_clip.get_tokenizer("ViT-B-32")
 model.eval()
 
-# Load your document
+# Load your document (using LoadFile class from notebook)
 loader = LoadFile("/path/to/your/document.pdf")
 all_text, all_images = loader.openFile()
 text_chunks = loader.get_chunks(all_text)
 
-# Create embeddings
+# Create embeddings (using CreateEmbedding class from notebook)
 embeddings = CreateEmbedding(model, preprocess, tokenizer)
 
 # Initialize ChromaDB
@@ -76,8 +81,7 @@ import chromadb
 client = chromadb.PersistentClient(path="./chroma_db")
 collection = client.get_or_create_collection(name="lecture_notes")
 
-# Add documents to vector store
-# ... (see notebook for complete code)
+# Add documents to vector store (see notebook for complete implementation)
 
 # Query your documents
 query_text = "What is Intermediate COCOMO Model?"
@@ -88,6 +92,8 @@ results = collection.query(
     n_results=3
 )
 ```
+
+**Note**: The `LoadFile` and `CreateEmbedding` classes are defined in the notebook. Refer to [RAG_PDF.ipynb](RAG_PDF.ipynb) for complete implementation details.
 
 ### 3. Example Queries
 
