@@ -194,9 +194,6 @@ Contributions are welcome! Feel free to:
 - Submit pull requests
 - Improve documentation
 
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
 
 ## 👤 Author
 
@@ -213,7 +210,3 @@ This project is open source and available under the [MIT License](LICENSE).
 ## 📞 Support
 
 For questions or issues, please open an issue on the [GitHub repository](https://github.com/Abhineetsahay/multimodal-rag-academic-notes/issues).
-
----
-
-**Note**: This project is designed for educational purposes and works best with well-structured academic documents like lecture slides, textbooks, and notes.
